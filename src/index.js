@@ -4,11 +4,11 @@
 //
 // Reads the PR diff from git, loads optional PRISM*.md context/prompt, runs the
 // review, prints it, and (when a token + PR are present) posts a PR comment.
-// Set PRISM_FAIL_ON_FINDINGS=1 to make the job fail when issues are found.
+// Exits 1 if any finding is level error or fatal (fails the pipeline).
 
 import { getDiff } from "./diff.js";
 import { getAppContext, getUserPrompt } from "./context.js";
-import { review } from "./reviewer.js";
+import { review, isFailed } from "./reviewer.js";
 import { formatComment, postComment } from "./post.js";
 
 async function main() {
@@ -30,7 +30,7 @@ async function main() {
     }
   }
 
-  if (!result.lgtm && process.env.PRISM_FAIL_ON_FINDINGS) process.exit(1);
+  if (isFailed(result.findings)) process.exit(1);
 }
 
 main().catch((e) => {

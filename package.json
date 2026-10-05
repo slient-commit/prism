@@ -1,0 +1,29 @@
+{
+  "name": "prism",
+  "version": "1.0.0",
+  "description": "A lightweight, AI-powered pull request reviewer that analyzes code diffs and leaves actionable feedback directly in your CI/CD pipeline.",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "prism": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slient-commit/prism.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slient-commit/prism/issues"
+  },
+  "homepage": "https://github.com/slient-commit/prism#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "openai": "^7.28.0"
+  }
+}
